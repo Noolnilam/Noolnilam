@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proceed to Pay - NoolNilam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            padding: 20px;
+            color: #ecf0f1;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .summary {
+            margin-bottom: 20px;
+        }
+        .summary p {
+            margin: 10px 0;
+        }
+        .confirm-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .confirm-btn:hover {
+            background-color: #34495e;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Proceed to Pay</h1>
+    </header>
+    <div class="container">
+        <h2>Order Summary</h2>
+        <div class="summary">
+            <p><strong>Book:</strong> <span id="bookName"></span></p>
+            <p><strong>Quantity:</strong> <span id="quantity"></span></p>
+            <p><strong>Delivery Name:</strong> <span id="name"></span></p>
+            <p><strong>Phone:</strong> <span id="phone"></span></p>
+            <p><strong>Address:</strong> <span id="address"></span></p>
+            <p><strong>Pincode:</strong> <span id="pincode"></span></p>
+            <p><strong>Shipping Cost:</strong> ₹<span id="shipping"></span></p>
+            <p><strong>Total Cost:</strong> ₹<span id="total"></span></p>
+        </div>
+        <button class="confirm-btn" onclick="confirmOrder()">Confirm Order</button>
+    </div>
+
+    <script>
+        function getParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name) || '';
+        }
+
+        function calculateShipping(pincode) {
+            if (!pincode) return 0;
+            const pin = parseInt(pincode);
+            if (pin >= 600000 && pin <= 699999) return 50;
+            else if (pin >= 500000 && pin < 600000) return 70;
+            else return 100;
+        }
+
+        function confirmOrder() {
+            alert("Your order has been confirmed! Thank you for shopping with NoolNilam.");
+        }
+
+        window.onload = function() {
+            const book = getParam('book');
+            const qty = parseInt(getParam('quantity')) || 1;
+            const name = getParam('name');
+            const phone = getParam('phone');
+            const address = getParam('address');
+            const pincode = getParam('pincode');
+
+            const bookPrice = 350;
+            const shipping = calculateShipping(pincode);
+            const total = (bookPrice * qty) + shipping;
+
+            document.getElementById('bookName').textContent = book;
+            document.getElementById('quantity').textContent = qty;
+            document.getElementById('name').textContent = name;
+            document.getElementById('phone').textContent = phone;
+            document.getElementById('address').textContent = address;
+            document.getElementById('pincode').textContent = pincode;
+            document.getElementById('shipping').textContent = shipping;
+            document.getElementById('total').textContent = total;
+        }
+    </script>
+</body>
+</html>
