@@ -28,15 +28,15 @@
 <h2>📘 Light Humans</h2>
 <p>Evolution Beyond the Physical (Vol.1 - From flesh to light) is available now.
 <br/>Quantity: <input id="qty" min="1" type="number" value="1"/><br/>
-<button onclick="buyBook()">Buy</button>
+<button onclick="redirectToBuy()">Buy</button>
 <script>
-        function buyBook() {
+        function redirectToBuy() {
             const qty = document.getElementById('qty').value;
             const book = "Evolution Beyond the Physical (Vol.1 - From flesh to light)";
-            const url = "cart.html?book=" + encodeURIComponent(book) + "&qty=" + qty;
+            const url = "buy.html?book=" + encodeURIComponent(book) + "&qty=" + qty;
             window.location.href = url;
         }
-    </script></p>
+        </script></p>
 <label for="qty-light">Quantity:</label>
 <input id="qty-light" min="1" name="qty-light" type="number" value="1"/>
 <button class="add-to-cart">Add to Cart</button>
@@ -64,10 +64,11 @@
 <p>© 2025 NoolNilam. Created by Goutham Vaithiyanathan.</p>
 </footer>
 <script>
-        function redirectToCart() {
-            const quantity = document.getElementById('quantity').value;
-            const bookName = encodeURIComponent("Evolution Beyond the Physical (Vol.1 - From flesh to light)");
-            window.location.href = `cart.html?book=${bookName}&quantity=${quantity}`;
+        function redirectToBuy() {
+            const qty = document.getElementById('qty').value;
+            const book = "Evolution Beyond the Physical (Vol.1 - From flesh to light)";
+            const url = "buy.html?book=" + encodeURIComponent(book) + "&qty=" + qty;
+            window.location.href = url;
         }
         </script></body>
 </html>
