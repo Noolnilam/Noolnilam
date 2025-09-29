@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=5.0" name="viewport"/>
+<title>NoolNilam – Books</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header>
+<div class="logo">NoolNilam</div>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="books.html">Books</a></li>
+<li><a href="light-humans.html">Light Humans</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="buy.html">Buy</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</header>
+<section class="features">
+<div class="feature-box">
+<img alt="Light Humans" src="light-humans.jpg" style="width:45%; border-radius:5px;"/>
+<h2>📘 Light Humans</h2>
+<p>Evolution Beyond the Physical (Vol.1 - From flesh to light) is available now.
+<br/>Quantity: <input id="qty" min="1" type="number" value="1"/><br/>
+<button onclick="buyBook()">Buy</button>
+<script>
+        function buyBook() {
+            const qty = document.getElementById('qty').value;
+            const book = "Evolution Beyond the Physical (Vol.1 - From flesh to light)";
+            const url = "cart.html?book=" + encodeURIComponent(book) + "&qty=" + qty;
+            window.location.href = url;
+        }
+    </script></p>
+<label for="qty-light">Quantity:</label>
+<input id="qty-light" min="1" name="qty-light" type="number" value="1"/>
+<button class="add-to-cart">Add to Cart</button>
+</div>
+<div class="feature-box">
+<img alt="Cursed Moonlight" src="cursed-moonlight.jpg" style="width:45%; border-radius:5px;"/>
+<h2>🌕 Cursed Moonlight</h2>
+<p>A horror-comedy adventure in a cursed village under moonlight.</p>
+<p>🚧 Coming Soon</p>
+<label for="qty-cursed">Quantity:</label>
+<input disabled="" id="qty-cursed" min="1" name="qty-cursed" type="number" value="1"/>
+<button class="add-to-cart" disabled="">Unavailable</button>
+</div>
+<div class="feature-box">
+<img alt="The Olivan – Reality far from Earth" src="olivan-reality.jpg" style="width:45%; border-radius:5px;"/>
+<h2>🚀 The Olivan – Reality far from Earth</h2>
+<p>A sci-fi journey into distant realities where Earth is no longer the center of consciousness.</p>
+<p>🚧 Coming Soon</p>
+<label for="qty-olivan">Quantity:</label>
+<input disabled="" id="qty-olivan" min="1" name="qty-olivan" type="number" value="1"/>
+<button class="add-to-cart" disabled="">Unavailable</button>
+</div>
+</section>
+<footer>
+<p>© 2025 NoolNilam. Created by Goutham Vaithiyanathan.</p>
+</footer>
+<script>
+        function redirectToCart() {
+            const quantity = document.getElementById('quantity').value;
+            const bookName = encodeURIComponent("Evolution Beyond the Physical (Vol.1 - From flesh to light)");
+            window.location.href = `cart.html?book=${bookName}&quantity=${quantity}`;
+        }
+        </script></body>
+</html>

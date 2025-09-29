@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart - Learnbite</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            color: #444;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .summary {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Cart</h2>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" value="1" min="1">
+
+        <div class="summary">
+            <p>Book Price: ₹350</p>
+            <p>Shipping Charges: ₹50</p>
+            <p id="totalCost">Total Cost: ₹400</p>
+        </div>
+
+        <button onclick="proceedToContact()">Proceed</button>
+    </div>
+
+    <script>
+        const bookPrice = 350;
+        const shipping = 50;
+
+        document.getElementById('quantity').addEventListener('input', updateTotal);
+
+        function updateTotal() {
+            const qty = parseInt(document.getElementById('quantity').value) || 1;
+            const total = (bookPrice * qty) + shipping;
+            document.getElementById('totalCost').innerText = 'Total Cost: ₹' + total;
+        }
+
+        function proceedToContact() {
+            const qty = document.getElementById('quantity').value;
+            window.location.href = 'contact_details.html?quantity=' + qty;
+        }
+    </script>
+</body>
+</html>

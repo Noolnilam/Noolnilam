@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Details - Learnbite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #444;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        #otp-section {
+            display: none;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0055a5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Contact Details</h2>
+        <form id="contactForm">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address">Delivery Address *</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="contact">Contact Number *</label>
+            <input type="tel" id="contact" name="contact" required>
+
+            <label for="email">Email ID *</label>
+            <input type="email" id="email" name="email" required>
+
+            <div id="otp-section">
+                <label for="otp">Enter OTP *</label>
+                <input type="number" id="otp" name="otp" required>
+            </div>
+
+            <button type="button" id="sendOtpBtn">Send OTP</button>
+            <button type="button" id="verifyOtpBtn" disabled>Verify OTP</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        var verified = false;
+        var configuration = {
+            widgetId: "35697a6f7766343832393130",
+            tokenAuth: "470888TsZFp03l7U68d6b0aeP1",
+            identifier: "", // will be set dynamically
+            exposeMethods: true,
+            success: (data) => {
+                console.log('success response', data);
+                verified = true;
+                window.location.href = "payment.html";
+            },
+            failure: (error) => {
+                console.log('failure reason', error);
+                alert("OTP verification failed. Please try again.");
+            },
+            "VAR1": "Learnbite"
+        };
+
+        document.getElementById("sendOtpBtn").onclick = function() {
+            const mobile = document.getElementById("contact").value;
+            if (mobile.length < 10) {
+                alert("Please enter a valid mobile number.");
+                return;
+            }
+            configuration.identifier = mobile;
+            document.getElementById("otp-section").style.display = "block";
+            document.getElementById("verifyOtpBtn").disabled = false;
+            initSendOTP(configuration);
+        };
+
+        document.getElementById("verifyOtpBtn").onclick = function() {
+            const otp = document.getElementById("otp").value;
+            if (!otp || otp.length < 4) {
+                alert("Please enter a valid OTP.");
+                return;
+            }
+            if (window.verifyOTP) {
+                window.verifyOTP(otp);
+            } else {
+                alert("OTP verification method not available.");
+            }
+        };
+    </script>
+    <script type="text/javascript" src="https://verify.msg91.com/otp-provider.js"></script>
+</body>
+</html>
